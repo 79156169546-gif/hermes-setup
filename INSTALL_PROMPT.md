@@ -48,7 +48,7 @@ github.com/79156169546-gif/hermes-setup — той же, что настроен
 
 6. Проверь результат и покажи мне отчёт:
    - `hermes plugins list --user --plain`   — 10 плагинов, все enabled
-   - `hermes skills list --source local`     — 11 локальных скиллов
+   - `hermes skills list --source hub`       — 11 скиллов из tap
    - `hermes mcp list`                      — playwright, neon, supabase,
      tgbot-mcp (если был токен)
    - `hermes config check`                  — без ошибок
@@ -207,12 +207,16 @@ hermes mcp add tgbot-mcp --command uvx --args tgbot-mcp \
 
 ```bash
 hermes plugins list --user --plain   # 10 enabled + tool-slimmer disabled
-hermes skills list --source local     # 11 скиллов
-hermes skills list --source builtin   # 52 встроенных
+hermes skills list --source hub      # 11 скиллов, установленных из tap
+hermes skills list --source builtin  # 52 встроенных
 hermes mcp list                      # 4 сервера
 hermes config check
 hermes doctor
 ```
+
+Скиллы, установленные из tap-репозитория, числятся как `hub` (источник
+skills.sh), а не `local` — `local` показывает только скиллы, созданные
+вручную на этой машине.
 
 ---
 

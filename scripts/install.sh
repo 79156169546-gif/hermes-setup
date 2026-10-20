@@ -161,7 +161,7 @@ fi
 # ── 6. Проверка ─────────────────────────────────────────────────────────────
 say "Проверка"
 run hermes plugins list --user --plain
-run hermes skills list --source local
+run hermes skills list --source hub
 run hermes mcp list
 run hermes config check
 

@@ -147,7 +147,7 @@ Invoke-Step "Регистрация MCP-серверов" {
 # ── 5. Проверка ────────────────────────────────────────────────────────────
 Invoke-Step "Проверка" {
     hermes plugins list --user --plain
-    hermes skills list --source local
+    hermes skills list --source hub
     hermes mcp list
     hermes config check
 }
