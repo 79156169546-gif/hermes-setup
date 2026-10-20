@@ -156,8 +156,8 @@ Credential lands in `~/.render/cli.yaml` under `api.key` (not `token:`), and
 the active workspace is stored in the same file. To call the API directly:
 
 ```bash
-KEY=$(sed -n 's/^ *key: *//p' ~/.render/cli.yaml | head -1)
-curl -s -H "Authorization: Bearer $KEY" https://api.render.com/v1/owners
+AUTH=$(sed -n 's/^ *key: *//p' ~/.render/cli.yaml | head -1)
+curl -s -H "Authorization: Bearer $AUTH" https://api.render.com/v1/owners
 ```
 
 ### Workspace
@@ -227,8 +227,8 @@ updates them.
 
 ### Python API on Render
 
-- `requirements.txt` must be pinned and complete; `pip install -r` is the
-  build command.
+- `requirements.txt` must be pinned and complete; the build command is
+  `pip install -r requirements.txt`.
 - With `--root-directory backend`, the start command runs from that folder
   and `main.py` is imported as a **top-level** module. Relative imports
   (`from . import db`) fail — use dual-mode try/except imports so the same

@@ -94,7 +94,7 @@ asked for the verification, so the clean run is part of the deliverable.
 
 ## Render without LibreOffice
 
-See `scripts/export_pptx_png.py`. Requires `pip install pywin32`:
+See `scripts/export_pptx_png.py`. Requires `pip install "pywin32==311"`:
 
 - `ppt.Visible = 0` raises a COM error ("Hiding the application window
   is not allowed"); use `Visible = 1` with `Open(..., WithWindow=False)`.

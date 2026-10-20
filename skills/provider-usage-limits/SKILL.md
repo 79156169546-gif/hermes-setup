@@ -80,8 +80,9 @@ undeclared daily cap is not "~50k requests/day".
 - **Free models consume request quota but not credits.** A `200` with
   `credits-remaining: 0` is normal; don't read it as a balance problem.
 - **Read secrets from `.env`, never print them.** Pull the key with
-  `grep -oP 'OPENROUTER_API_KEY=\K.*' ~/.hermes/.env | tr -d '\r"'`
-  into a shell variable and reference `$KEY`.
+  `grep -oP 'OPENROUTER_API_KEY=\K.*' "$(hermes config env-path)"`
+  into a shell variable and reference it as `$KEY`.
+  into a shell variable and reference it as `$KEY`.
 - **Token limits count input + output.** An agent turn with a large
   context exhausts TPM long before RPM — say this when the user asks
   why they hit a wall.

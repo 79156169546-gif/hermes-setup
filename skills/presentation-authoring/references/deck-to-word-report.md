@@ -37,7 +37,8 @@ Rules for turning frames into bullets:
 - **Single-paragraph frames are captions** (card heading, banner,
   takeaway plate). Merge a short one with the single-paragraph frame
   directly below it only when ALL of these hold: ≤75 chars, no terminal
-  `.`/`!`/`?`/`:`/`—`, vertical gap > 0.5", `abs(left) < 0.06`. Mark
+  punctuation (period, question mark, colon, em dash), vertical gap
+  > 0.5", `abs(left) < 0.06`. Mark
   both frames consumed so nothing is reused.
 - **Two false-merge patterns to design the tolerance around.** A deck
   subtitle/kicker sits near the first card's left and gets glued onto

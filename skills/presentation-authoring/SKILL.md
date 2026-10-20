@@ -40,15 +40,15 @@ interpreter. Build an isolated venv once per project directory:
 ```bash
 uv venv .venv-pptx --python 3.11
 ./.venv-pptx/Scripts/python.exe -m ensurepip          # Windows
-./.venv-pptx/Scripts/python.exe -m pip install python-pptx pywin32 -q
-./.venv-pptx/Scripts/python.exe -m pip install python-docx -q   # step 8
+./.venv-pptx/Scripts/python.exe -m pip install "python-pptx==1.0.2" "pywin32==311" -q
+./.venv-pptx/Scripts/python.exe -m pip install "python-docx==1.1.2" -q   # step 8
 ```
 
 Run every build/render script with that interpreter, not the bare
 `python`. On Linux/macOS use `.venv-pptx/bin/python`.
 
-Faster path when no project venv exists: `uv pip install python-pptx
-python-docx --system` installs into the Hermes-managed Python that
+Faster path when no project venv exists: `uv pip install "python-pptx==1.0.2"
+"python-docx==1.1.2" --system` installs into the Hermes-managed Python that
 `execute_code`/`terminal` use, so the build script runs with the bare
 `python`. Plain `pip install` can succeed against a different
 interpreter while `import pptx` still fails — that mismatch is the

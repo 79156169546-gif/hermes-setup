@@ -52,8 +52,9 @@ x-nous-tool-pool-gated-off: false
 
 ## OpenRouter (`openrouter.ai/api/v1`)
 
-Auth: `OPENROUTER_API_KEY` from `~/.hermes/.env`. Read it with
-`grep -oP 'OPENROUTER_API_KEY=\K.*' ~/.hermes/.env | tr -d '\r"'`.
+Auth: `OPENROUTER_API_KEY` from the Hermes env file (path: `hermes config env-path`).
+Read it with
+`grep -oP 'OPENROUTER_API_KEY=\K.*' "$(hermes config env-path)"`.
 
 ### `GET /api/v1/key` (per-key state)
 
