@@ -1,0 +1,34 @@
+name: hermes-setup
+description: Exported by `hermes plugins pack export`.
+version: 1.0.0
+plugins:
+  - repo: PlayForm/Aphrodite-Hermes
+    ref: e95afcd9d99360fdf73ecdd2f540af7cd81597ec
+  - repo: ivcained/effortless-hermes
+    ref: ebc743fee654a91a36d731fd7059f16a231542f5
+  - repo: tonbistudio/hermes-canvas
+    ref: af907de7a779e6630ebd1b0781e9e7d702c624f9
+  - repo: misterdas/hermes-trove
+    ref: 69c673eeb2fcbaf12e9b88451ad1f627a88bc930
+  - repo: vectorize-io/hindsight
+    ref: f843f173bb41f001e322cc83c917371639e47fbf
+    subdir: hindsight-integrations/hermes
+  - repo: mykeura/hopper
+    ref: 68427cf7770b393b6b4b694722d24431058fbd3f
+  - repo: Sahil-SS9/hermes-multichannel-prompt-optimizer
+    ref: e83eba9a8e102ed255a5bfd20cc88ea50e3af28f
+  - repo: rarf/hermes-quota-plugin
+    ref: ce8593a25ff61c32dd1e929fe2f87502cb6408cc
+  - repo: kerrz2020/hermes-rtk-rewrite
+    ref: 4c5f8a5abdfd7980cba5ef02df86b8efe52c00d6
+  - repo: moonlight-lupin/agent-skills
+    ref: 79801c69e797f5f8efd619f8f451ca89d18c7240
+    subdir: plugins/skill-retrieval
+config:
+  effortless-hermes:
+    settings:
+      judge_backend: custom
+      fallback_backend: none
+      custom_base_url: https://openrouter.ai/api/v1
+      custom_model: inception/mercury-decide:free
+      judge_timeout_seconds: 15.0

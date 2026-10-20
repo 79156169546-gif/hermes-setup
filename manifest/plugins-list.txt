@@ -1,0 +1,12 @@
+enabled      catalog:community@e95afcd9 2.2.6    aphrodite
+not enabled  catalog:community@92e4351a 5.8.35   chronicle
+enabled      git      0.2.0    effortless-hermes
+enabled      git      0.1.8    hermes-canvas
+enabled      catalog:community@69c673ee 1.1.4    hermes-trove
+enabled      catalog:community@f843f173 1.2.2    hindsight
+enabled      catalog:community@68427cf7 1.4.0    hopper
+enabled      catalog:community@e83eba9a 1.0.0    prompt-optimizer
+enabled      catalog:community@ce8593a2 2.10.0   quota
+enabled      catalog:community@4c5f8a5a 1.0.1    rtk-rewrite
+enabled      catalog:community@79801c69 0.6.0    skill-retrieval
+disabled     catalog:community@1b90aa59 0.8.0    tool-slimmer

@@ -1,0 +1,41 @@
+
+mcp_servers:
+  supabase:
+    url: https://mcp.supabase.com/mcp
+    auth: oauth
+    enabled: true
+  deployment-orchestrator:
+    command: npx
+    args:
+      - -y
+      - '@modjules/mcp-remote'
+      - https://deployment-mcp-server.local/mcp
+    enabled: false
+  playwright:
+    command: npx
+    args:
+      - -y
+      - '@playwright/mcp@latest'
+    enabled: true
+  tgbot-mcp:
+    command: uvx
+    args:
+      - tgbot-mcp
+      - --env
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - --env
+      - TELEGRAM_CHAT_ID=1645213242
+      - --connect-timeout
+      - '120'
+    enabled: true
+  neon:
+    command: npx
+    args:
+      - -y
+      - mcp-remote
+      - https://mcp.neon.tech/mcp
+      - --connect-timeout
+      - '120'
+    enabled: true
+approvals:
+  destructive_slash_confirm: false

@@ -1,0 +1,27 @@
+# Секреты — никогда в репозиторий
+.env
+.env.*
+*.env
+!env.example
+hosts.yml
+.git-credentials
+config.yaml
+*.pem
+*.key
+
+# Сборка и временное
+node_modules/
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Локальное
+.vscode/
+.idea/
+*.log
+tmp/

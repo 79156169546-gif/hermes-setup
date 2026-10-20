@@ -1,0 +1,138 @@
+# Настройки Hermes Agent, воспроизводимые на любом ПК.
+#
+# Файл НЕ является готовым config.yaml — это справочник «ключ: значение».
+# Применяется через `hermes config set <ключ> <значение>` (см. scripts/install.sh).
+#
+# Секретов здесь нет: значения, которые являются секретами, вынесены в .env
+# и подставляются как ${VAR} (см. manifest/env-vars.md).
+#
+# Проверено на: Hermes Agent vgit.2d4de4e (2026.9.24), Windows 11.
+
+# ── Модель и провайдер ──────────────────────────────────────────────────────
+# Бесплатная модель через OpenRouter. Ключ — в .env как OPENROUTER_API_KEY.
+model.default: "minimax/minimax-m3.1-flash:free"
+model.provider: "openrouter"
+model.base_url: "https://openrouter.ai/api/v1"
+model.api_mode: "chat_completions"
+
+# Рассуждение: medium — баланс качества и расхода токенов.
+agent.reasoning_effort: "medium"
+# Лимит итераций инструментов за один диалог.
+agent.max_turns: 150
+agent.verbose: false
+
+# ── Плагины ────────────────────────────────────────────────────────────────
+# Список в plugins.enabled/disabled дублирует hermes-pack.yaml: pack ставит
+# плагины, а этот список включает их. Оба нужны — pack не управляет enabled.
+plugins.enabled:
+  - aphrodite
+  - effortless-hermes
+  - hermes-canvas
+  - hermes-trove
+  - hindsight
+  - hopper
+  - prompt-optimizer
+  - quota
+  - rtk-rewrite
+  - skill-retrieval
+  - web/ddgs
+plugins.disabled:
+  - tool-slimmer
+
+# Судья effortless-hermes — отдельная бесплатная модель через OpenRouter.
+plugins.entries.effortless-hermes.settings.judge_backend: "custom"
+plugins.entries.effortless-hermes.settings.fallback_backend: "none"
+plugins.entries.effortless-hermes.settings.custom_base_url: "https://openrouter.ai/api/v1"
+plugins.entries.effortless-hermes.settings.custom_model: "inception/mercury-decide:free"
+plugins.entries.effortless-hermes.settings.judge_timeout_seconds: 15.0
+
+# ── Память ─────────────────────────────────────────────────────────────────
+# Hindsight — долговременная память между сессиями.
+memory.provider: "hindsight"
+memory.memory_enabled: true
+memory.user_profile_enabled: true
+memory.memory_char_limit: 2200
+memory.user_char_limit: 1375
+memory.nudge_interval: 10
+
+# ── Контекст ───────────────────────────────────────────────────────────────
+# hermes-trove — lossless-контекст вместо обычного сжатия.
+context.engine: "hermes-trove"
+
+# Сжатие контекста: срабатывает на 50% окна, хвост 20% сохраняется целиком.
+compression.enabled: true
+compression.threshold: 0.50
+compression.target_ratio: 0.20
+compression.protect_last_n: 20
+compression.max_attempts: 3
+
+# ── Терминал ───────────────────────────────────────────────────────────────
+terminal.backend: "local"
+terminal.cwd: "."
+terminal.timeout: 180
+terminal.lifetime_seconds: 300
+terminal.home_mode: "auto"
+
+# ── Браузер ────────────────────────────────────────────────────────────────
+# Локальный профиль Edge: используются реальные сессии и авторизация.
+browser.backend: "browser-use"
+browser.use_real_profile: true
+browser.inactivity_timeout: 120
+browser.font_family: "Cascadia Code"
+
+# ── Скиллы ─────────────────────────────────────────────────────────────────
+# Напоминать агенту создавать скилл после сложных задач.
+skills.creation_nudge_interval: 15
+
+# ── Делегирование и код ────────────────────────────────────────────────────
+delegation.max_iterations: 250
+code_execution.timeout: 300
+code_execution.max_tool_calls: 50
+
+# ── Планировщик (cron) ─────────────────────────────────────────────────────
+# Догонять пропущенные задачи после простоя.
+cron.catch_up_missed: true
+
+# ── Kanban ─────────────────────────────────────────────────────────────────
+kanban.review_dispatch: true
+
+# ── Одобрение опасных команд ──────────────────────────────────────────────
+approvals.destructive_slash_confirm: false
+
+# ── База данных и вложения ─────────────────────────────────────────────────
+database.journal_mode: "wal"
+runtime.nofile_soft_limit: 4096
+attachments.storage: "hermes-home"
+
+# ── Обновления ─────────────────────────────────────────────────────────────
+updates.check: true
+updates.pre_update_backup: false
+updates.backup_keep: 5
+updates.non_interactive_local_changes: "stash"
+
+# ── Аутентификация ─────────────────────────────────────────────────────────
+auth.adopt_external_logins: true
+auth.codex_login_flow: "device_code"
+
+# ── Телеметрия ─────────────────────────────────────────────────────────────
+# Метрики считаются локально, наружу не отправляются.
+telemetry.shared_metrics.enabled: true
+telemetry.shared_metrics.send: false
+
+# ── Вспомогательные модели ─────────────────────────────────────────────────
+# Сжатие контекста — на дешёвой модели, отдельной от основной.
+auxiliary.compression.provider: "auto"
+auxiliary.compression.model: ""
+
+# ── Ввод/вывод голосом ─────────────────────────────────────────────────────
+stt.enabled: true
+stt.local.model: "base"
+stt.local.language: "en"
+stt.openai.model: "whisper-1"
+
+# ── Плагин MoA (смесь моделей) ─────────────────────────────────────────────
+moa.enabled: true
+moa.aggregator.provider: "openrouter"
+moa.aggregator.model: "anthropic/claude-opus-4.8"
+moa.degraded_reference_policy: "loud"
+moa.fanout: "user_turn"
